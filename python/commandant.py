@@ -31,9 +31,10 @@ import runpy as _runpy
 import sys as _sys
 import tempfile as _tempfile
 import time as _time
+import traceback as _traceback
 
 class Command(object):
-    def __init__(self, home, name=None):
+    def __init__(self, home=None, name=None):
         self.home = home
         self.name = name
 
@@ -157,8 +158,8 @@ patterns:
 """
 
 class TestCommand(Command):
-    def __init__(self, home, test_modules, name=None):
-        super(TestCommand, self).__init__(home, name=name)
+    def __init__(self, test_modules, home=None, name=None):
+        super(TestCommand, self).__init__(home=home, name=name)
 
         self.test_modules = []
 
@@ -358,6 +359,8 @@ class _TestModule(object):
 
                 _sys.stderr.flush()
 
+                _traceback.print_exc()
+                
                 return
             finally:
                 _os.remove(output_file)

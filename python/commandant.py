@@ -399,7 +399,7 @@ class _TestModule(object):
             try:
                 with open(output_file, "w") as out:
                     with _OutputRedirected(out, out):
-                        with _Timer(self.command.test_timeout):
+                        with _Timer(session.test_timeout):
                             function(session)
             except KeyboardInterrupt:
                 raise

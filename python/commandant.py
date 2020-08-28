@@ -165,10 +165,10 @@ class TestSkipped(Exception):
     pass
 
 class TestCommand(Command):
-    def __init__(self, test_modules, **kwargs):
+    def __init__(self, *test_modules, **kwargs):
         super(TestCommand, self).__init__(**kwargs)
 
-        self.test_modules = list()
+        self.test_modules = test_modules
 
         for module in test_modules:
             _TestModule(self, module)

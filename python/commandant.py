@@ -168,7 +168,7 @@ class TestCommand(Command):
     def __init__(self, *test_modules, **kwargs):
         super(TestCommand, self).__init__(**kwargs)
 
-        self.test_modules = test_modules
+        self.test_modules = list()
 
         for module in test_modules:
             _TestModule(self, module)

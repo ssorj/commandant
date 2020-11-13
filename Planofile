@@ -35,4 +35,4 @@ def clean():
 
 @target(help="Initialize and update Git submodules")
 def modules():
-    run("git submodule update --init --remote --recursive")
+    run("git submodule update --init --remote")

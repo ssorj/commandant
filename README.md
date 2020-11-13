@@ -1,7 +1,5 @@
 # Commandant
 
-Common code for command-line tools
+![main](https://github.com/ssorj/commandant/workflows/main/badge.svg)
 
-## Static embedding
-
-    curl "https://raw.githubusercontent.com/ssorj/commandant/master/python/commandant.py" -o python/commandant.py
+Common code for command-line tools and testing

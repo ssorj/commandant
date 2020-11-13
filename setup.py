@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -17,18 +18,11 @@
 # under the License.
 #
 
-import commandant_tests
+from distutils.core import setup
 
-from commandant import TestCommand
-
-@target(default=True)
-def test():
-    TestCommand(commandant_tests).main([])
-
-@target
-def clean():
-    for path in find(".", "__pycache__"):
-        remove(path)
-
-    for path in find(".", "*.pyc"):
-        remove(path)
+setup(name="commandant",
+      version="1.0.0-SNAPSHOT",
+      author="Justin Ross",
+      author_email="justin.ross@gmail.com",
+      py_modules=["commandant"],
+      package_dir={"": "python"})

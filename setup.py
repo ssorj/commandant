@@ -22,6 +22,7 @@ from distutils.core import setup
 
 setup(name="commandant",
       version="1.0.0-SNAPSHOT",
+      url="https://github.com/ssorj/commandant",
       author="Justin Ross",
       author_email="justin.ross@gmail.com",
       py_modules=["commandant"],

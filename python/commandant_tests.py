@@ -21,7 +21,6 @@ from commandant import *
 
 def test_command(session):
     command = Command()
-
     command.main(["--init-only"])
 
     command = Command()
@@ -29,4 +28,38 @@ def test_command(session):
     try:
         command.main([])
     except NotImplementedError:
+        pass
+
+    class ExampleCommand(Command):
+        def __init__(self):
+            super(ExampleCommand, self).__init__(name="example")
+
+            self.description = "alpha"
+            self.epilog = "beta"
+
+        def main(self, args=None):
+            print("Hello")
+            print(self.description)
+            print(self.epilog)
+
+    command = ExampleCommand()
+    command.main([])
+
+    command.main(["--help"])
+
+def test_logging(session):
+    raise TestSkipped("Not yet implemented")
+
+def test_test_command(session):
+    command = TestCommand()
+    command.main(["--init-only"])
+
+    command = TestCommand()
+    command.main(["--list"])
+
+    command = TestCommand()
+
+    try:
+        command.main([])
+    except SystemExit:
         pass

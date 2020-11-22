@@ -119,7 +119,7 @@ class Command(object):
 
         try:
             self.run()
-        except KeyboardInterrupt:
+        except KeyboardInterrupt: # pragma: nocover
             pass
 
     def info(self, message, *args):
@@ -360,6 +360,8 @@ class _TestModule(object):
                     function(session)
             except KeyboardInterrupt:
                 raise
+            except SystemExit as e:
+                raise Exception("Intercepted system exit with code {0}".format(e))
             except Exception as e:
                 if isinstance(e, TestSkipped):
                     session.skipped_tests.append(function)
@@ -393,8 +395,10 @@ class _TestModule(object):
                     with _OutputRedirected(out, out):
                         with _Timer(session.test_timeout):
                             function(session)
-            except KeyboardInterrupt:
+            except KeyboardInterrupt: # pragma: nocover
                 raise
+            except SystemExit as e:
+                raise Exception("Intercepted system exit with code {0}".format(e))
             except Exception as e:
                 if isinstance(e, TestSkipped):
                     session.skipped_tests.append(function)

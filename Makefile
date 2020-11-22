@@ -52,3 +52,10 @@ install: build
 clean:
 	find python -type f -name \*.pyc -delete
 	rm -rf python/__pycache__ build dist htmlcov .coverage
+
+.PHONY: coverage
+coverage:
+	coverage run scripts/test
+	coverage report
+	coverage html
+	@echo file:${CURDIR}/htmlcov/index.html

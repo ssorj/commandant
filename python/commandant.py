@@ -357,11 +357,12 @@ class _TestModule(object):
 
             try:
                 with _Timer(session.test_timeout):
-                    function(session)
+                    try:
+                        function(session)
+                    except SystemExit as e:
+                        raise Exception("Intercepted system exit with code {0}".format(e))
             except KeyboardInterrupt:
                 raise
-            except SystemExit as e:
-                raise Exception("Intercepted system exit with code {0}".format(e))
             except Exception as e:
                 if isinstance(e, TestSkipped):
                     session.skipped_tests.append(function)
@@ -394,11 +395,12 @@ class _TestModule(object):
                 with open(output_file, "w") as out:
                     with _OutputRedirected(out, out):
                         with _Timer(session.test_timeout):
-                            function(session)
+                            try:
+                                function(session)
+                            except SystemExit as e:
+                                raise Exception("Intercepted system exit with code {0}".format(e))
             except KeyboardInterrupt: # pragma: nocover
                 raise
-            except SystemExit as e:
-                raise Exception("Intercepted system exit with code {0}".format(e))
             except Exception as e:
                 if isinstance(e, TestSkipped):
                     session.skipped_tests.append(function)

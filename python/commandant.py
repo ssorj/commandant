@@ -360,7 +360,8 @@ class _TestModule(object):
                     try:
                         function(session)
                     except SystemExit as e:
-                        raise Exception("Intercepted system exit with code {0}".format(e))
+                        _traceback.print_exc()
+                        raise Exception("System exit with code {0}".format(e))
             except KeyboardInterrupt:
                 raise
             except Exception as e:
@@ -398,7 +399,8 @@ class _TestModule(object):
                             try:
                                 function(session)
                             except SystemExit as e:
-                                raise Exception("Intercepted system exit with code {0}".format(e))
+                                _traceback.print_exc()
+                                raise Exception("System exit with code {0}".format(e))
             except KeyboardInterrupt: # pragma: nocover
                 raise
             except Exception as e:

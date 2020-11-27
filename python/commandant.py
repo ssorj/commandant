@@ -236,6 +236,10 @@ class _TestSession(object):
 
         self.test_timeout = self.module.command.test_timeout
 
+    @property
+    def verbose():
+        return self.module.command.verbose
+
 class _TestFunction(object):
     def __init__(self, module, function):
         self.module = module
@@ -400,7 +404,7 @@ class _TestModule(object):
                                 function(session)
                             except SystemExit as e:
                                 _traceback.print_exc()
-                                raise Exception("System exit with code {0}".format(e))
+                                raise Exception("System exit with code {0}".format(e.code))
             except KeyboardInterrupt: # pragma: nocover
                 raise
             except Exception as e:

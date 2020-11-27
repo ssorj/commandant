@@ -237,7 +237,7 @@ class _TestSession(object):
         self.test_timeout = self.module.command.test_timeout
 
     @property
-    def verbose():
+    def verbose(self):
         return self.module.command.verbose
 
 class _TestFunction(object):
